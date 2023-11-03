@@ -15,7 +15,8 @@ database='testdb1'
 @app.route('/')
 
 def welcome():
-    return render_template('welcome.html')
+    log = "Robert Fernald & Xavier Floyd HW 3"
+    return render_template('welcome.html', log=log)
 
 @app.route('/api/update_basket_a')
 

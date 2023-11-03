@@ -23,8 +23,8 @@ def welcome():
 def updateA():
     cursor, connection = util.connect_to_db(username,password,host,port,database)
     try:
-        cursor.execute('SELECT * FROM Basket_a;')
-        cursor.execute('INSERT INTO Basket_a(a, fruit_a) VALUES (5, \'Cherry\');')
+        ins_statement = f"""INSERT INTO basket_a("a", "fruit_a") VALUES ('5', 'Cherry' );"""
+        cursor.execute(ins_statement)
         log = "Success"
     except IntegrityError:
         log = "Error"

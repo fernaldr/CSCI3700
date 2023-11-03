@@ -11,8 +11,12 @@ host='127.0.0.1'
 port='5432'
 database='testdb1'
 
-
 @app.route('/')
+
+def welcome():
+    return render_template('welcome.html')
+
+@app.route('/api/unique')
 
 def index():
    

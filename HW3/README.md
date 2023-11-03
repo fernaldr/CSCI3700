@@ -2,7 +2,7 @@ CSCI 3700 Database Management Systems
 HW 3
 Robert Fernald & Xavier Floyd
 
-##Quick Start
+###Quick Start
 Install a Python 3 virtual environment with:
 sudo apt-get install python3-venv
 '''

@@ -48,16 +48,18 @@ def connect():
         # display the PostgreSQL database server version
         db_version = cur.fetchone()
         print(db_version)
+
+        record = util.run_and_fetch_sql(cur, "SELECT * from basket_a;")
+    if record == -1:
+        # you can replace this part with a 404 page
+        print('Something is wrong with the SQL command')
+    else:
+        col_names = [desc[0] for desc in cur.description]
+        log = record[:5]
+        # log=[[1,2],[3,4]]
        
 	# close the communication with the PostgreSQL
         cur.close()
-    except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
-    finally:
-        if conn is not None:
-            conn.close()
-            print('Database connection closed.')
-
 
 if __name__ == '__main__':
     connect()
@@ -107,7 +109,7 @@ def update_basket_a():
 
 
     ins_statement = fINSERT INTO basket_a ("PRIMARY KEY", "fruit_a") VALUES (5, 'Cherry');
-    
+
     curs.execute(ins_statement)
 
 @app.route('/unique', methods=['POST'])

@@ -18,19 +18,20 @@ def index():
    
     cursor, connection = util.connect_to_db(username,password,host,port,database)
     
-    recordA = util.run_and_fetch_sql(cursor, "SELECT * from basket_a;")
-    recordB = util.run_and_fetch_sql(cursor, "SELECT * from basket_b;")
     if recordA == -1 or recordB ==-1:
         
         print('Something is wrong with the SQL command')
     else:
-        # Fetch column names from the cursor description
+
+        recordA = util.run_and_fetch_sql(cursor, "SELECT * from basket_a;")
         columns = [desc[0] for desc in cursor.description]
-        # Create a list of dictionaries where keys are column names and values are row values
-        logB = [dict(zip(columns, row)) for row in recordA]
         logA = [dict(zip(columns, row)) for row in recordB]
+        recordB = util.run_and_fetch_sql(cursor, "SELECT * from basket_b;")
+        columns = [desc[0] for desc in cursor.description]
+        logB = [dict(zip(columns, row)) for row in recordA]
+        
     util.disconnect_from_db(connection, cursor)
-    return render_template('index.html', logA, logB)
+    return render_template('index.html', logA=logA, logB=logB)
 
 
 if __name__ == '__main__':

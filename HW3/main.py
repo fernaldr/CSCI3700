@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 import util
+from tabulate import tabulate
 
 
 app = Flask(__name__)

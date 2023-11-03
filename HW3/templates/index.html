@@ -15,16 +15,13 @@ html
             <tr>
                 <th>ID</th>
                 <th>Fruit</th>
-                <!-- Add more table headers for other columns as needed -->
             </tr>
         </thead>
         <tbody>
             {% for row in log_html %}
             <tr>
-                <td>{{ row.id }}</td>
-                <td>{{ row.name }}</td>
-                <td>{{ row.fruit }}</td>
-                <!-- Add more table data cells for other columns as needed -->
+                <td>{{ row.a }}</td>
+                <td>{{ row.fruit_a }}</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -35,15 +32,13 @@ html
             <tr>
                 <th>ID</th>
                 <th>Fruit</th>
-                <!-- Add more table headers for other columns as needed -->
             </tr>
         </thead>
         <tbody>
             {% for row in log_html %}
             <tr>
-                <td>{{ row.id }}</td>
-                <td>{{ row.fruit }}</td>
-                <!-- Add more table data cells for other columns as needed -->
+                <td>{{ row.b }}</td>
+                <td>{{ row.fruit_b }}</td>
             </tr>
             {% endfor %}
         </tbody>

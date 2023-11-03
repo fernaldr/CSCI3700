@@ -27,6 +27,7 @@ def index():
         columns = [desc[0] for desc in cursor.description]
         # Create a list of dictionaries where keys are column names and values are row values
         log = [dict(zip(columns, row)) for row in record]
+        print(log = [dict(zip(columns, row)) for row in record])
     util.disconnect_from_db(connection, cursor)
     return render_template('index.html', log_html=log)
 

@@ -18,7 +18,7 @@ def index():
    
     cursor, connection = util.connect_to_db(username,password,host,port,database)
     
-    record = util.run_and_fetch_sql(cursor, "SELECT * from customer;")
+    record = util.run_and_fetch_sql(cursor, "SELECT * from basket_a;")
     if record == -1:
         
         print('Something is wrong with the SQL command')

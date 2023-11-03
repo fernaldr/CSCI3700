@@ -14,7 +14,10 @@ database='testdb1'
 def index():
  # this is your index page
     # connect to DB
-    cursor, connection = util.connect_to_db(username,password,host,port,database)
+    """cursor, connection = util.connect_to_db(username,password,host,port,database)"""
+    conn_string = "127.0.0.1:5000"
+    db =  psycopg2.connect(conn_string)
+    cursor = db.cursor
     # execute SQL commands
     record = util.run_and_fetch_sql(cursor, "SELECT * from customer;")
     if record == -1:

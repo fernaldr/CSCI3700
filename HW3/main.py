@@ -47,20 +47,18 @@ def connect():
 if __name__ == '__main__':
     connect()
 
-"""@app.route('/')
+@app.route('/')
 def index():
  # this is your index page
     # connect to DB
 
     cursor, connection = util.connect_to_db(username,password,host,port,database)
 
-    conn = psycopg2.connect(
+    db = psycopg2.connect(
     host=host,
     database="testdb1",
     user=username,
     password=password)
-
-    db =  psycopg2.connect(conn_string)
 
     cursor = db.cursor
     # execute SQL commands
@@ -81,6 +79,8 @@ def index():
     # the file named index.html under templates folder
     return render_template('index.html', sql_table = log, table_title=col_names)
 
+
+"""
 @app.route('/update_basket_a', methods=['POST'])
 def update_basket_a():
     conn_string = "127.0.0.1:5000/api/update_basket_a"

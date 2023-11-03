@@ -1,7 +1,8 @@
 from flask import Flask, render_template
 import util
+import psycopg2
 
-app = Flask(_name_)
+app = Flask(__name__)
 
 username='fernaldr16'
 password='test'
@@ -35,26 +36,30 @@ def index():
 @app.route('/update_basket_a', methods=['POST'])
 def update_basket_a():
     conn_string = "127.0.0.1:5000/api/update_basket_a"
-    cursor, connection = util.connect_to_db(username,password,host,port,database)
+    db =  psycopg2.connect(conn_string)
+    curs = db.cursor()
+    """cursor, connection = util.connect_to_db(username,password,host,port,database)"""
     ins_statement = f"""INSERT INTO basket_a ("PRIMARY KEY", "fruit_a") VALUES (5, 'Cherry');"""
-    cursor.execute(ins_statement)
+    curs.execute(ins_statement)
 
 @app.route('/unique', methods=['POST'])
 def unique():
     conn_string = "127.0.0.1:5000/api/unique"
-    cursor, connection = util.connect_to_db(username,password,host,port,database)
-    record = util.run_and_fetch_sql(cursor, "SELECT * from customer;")
+    db =  psycopg2.connect(conn_string)
+    curs = db.cursor()
+    """cursor, connection = util.connect_to_db(username,password,host,port,database)"""
+    record = util.run_and_fetch_sql(curs, "SELECT * from customer;")
     if record == -1:
         print('Something is wrong with the SQL command')
     else:
         # this will return all column names of the select result table
         # ['customer_id','store_id','first_name','last_name','email','address_id','activebool','create_date','last_update','active']
-        col_names = [desc[0] for desc in cursor.description]
+        col_names = [desc[0] for desc in curs.description]
         # only use the first five rows
         log = record[:5]
         # log=[[1,2],[3,4]]
     # disconnect from database
-    util.disconnect_from_db(connection,cursor)
+    util.disconnect_from_db(db,curs)
     # using render_template function, Flask will search
     # the file named index.html under templates folder
     return render_template('index.html', sql_table = log, table_title=col_names)

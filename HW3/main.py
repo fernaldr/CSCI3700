@@ -16,6 +16,20 @@ database='testdb1'
 def welcome():
     return render_template('welcome.html')
 
+@app.route('/api/update_basket_a')
+
+def updateA():
+    cursor, connection = util.connect_to_db(username,password,host,port,database)
+    cursor.execute('SELECT * FROM Basket_a;')
+    cursor.execute('INSERT INTO Basket_a(a, fruit_a) VALUES (5, \'Cherry\');')
+    cursor.execute('SELECT * FROM Basket_b;')
+    data = cursor.fetchall()
+
+    if cursor:
+        log = "Success"
+    else:
+        log = "Error"
+    return render_template('welcome.html,log')
 @app.route('/api/unique')
 
 def index():

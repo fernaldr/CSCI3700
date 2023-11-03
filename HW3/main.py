@@ -1,6 +1,6 @@
-from sqlite3 import IntegrityError
 from flask import Flask, render_template
 import util
+from psycopg2.errors import IntegrityError
 
 
 app = Flask(__name__)
@@ -22,9 +22,10 @@ def welcome():
 
 def updateA():
     cursor, connection = util.connect_to_db(username,password,host,port,database)
+    ins_statement = """INSERT INTO basket_a (a, fruit_a) VALUES (5, 'Cherry')"""
     try:
-        ins_statement = f"""INSERT INTO basket_a("a", "fruit_a") VALUES ('5', 'Cherry' );"""
         cursor.execute(ins_statement)
+        connection.commit()
         log = "Success"
     except IntegrityError:
         log = "Error"

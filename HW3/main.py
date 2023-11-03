@@ -30,26 +30,25 @@ def config(filename='database.ini', section='postgresql'):
 def connect():
     """ Connect to the PostgreSQL database server """
     conn = None
-    try:
-        print('Connecting to the PostgreSQL database...')
-        conn = psycopg2.connect(
+    print('Connecting to the PostgreSQL database...')
+    conn = psycopg2.connect(
     host=host,
     database="testdb1",
     user=username,
     password=password)
 		
         # create a cursor
-        cur = conn.cursor()
+    cur = conn.cursor()
         
 	# execute a statement
-        print('PostgreSQL database version:')
-        cur.execute('SELECT version()')
+    print('PostgreSQL database version:')
+    cur.execute('SELECT version()')
 
         # display the PostgreSQL database server version
-        db_version = cur.fetchone()
-        print(db_version)
+    db_version = cur.fetchone()
+    print(db_version)
 
-        record = util.run_and_fetch_sql(cur, "SELECT * from basket_a;")
+    record = util.run_and_fetch_sql(cur, "SELECT * from basket_a;")
     if record == -1:
         # you can replace this part with a 404 page
         print('Something is wrong with the SQL command')

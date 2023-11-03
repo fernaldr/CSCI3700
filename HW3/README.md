@@ -2,7 +2,7 @@
 ## HW 3
 ### Robert Fernald & Xavier Floyd
 
-#### Quick Start
+#### Virtual Environment Setup
 Install a Python 3 virtual environment with:
 ```
 sudo apt-get install python3-venv
@@ -19,12 +19,16 @@ source python_venv/bin/activate
 ```
 
 Download and unzip the code from GitHub
+Move the folder to the home directory,
+Alternatively you need to use the folder's location when running commands
+[parent folder]/CSCI3700/HW3/main.py
 
 Run requirements.txt:
 ```
 pip3 install -r CSCI3700/HW3/requirements.txt
 ```
 
+##### Server Testing
 Start the server:
 ```
 python3 CSCI3700/HW3/main.py

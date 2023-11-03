@@ -24,12 +24,12 @@ def updateA():
     try:
         cursor.execute('SELECT * FROM Basket_a;')
         cursor.execute('INSERT INTO Basket_a(a, fruit_a) VALUES (5, \'Cherry\');')
+        log = "Success"
     except IntegrityError:
         log = "Error"
-
     finally:
         cursor.close()
-    return render_template('welcome.html,log')
+    return render_template('welcome.html',log=log)
 @app.route('/api/unique')
 
 def index():

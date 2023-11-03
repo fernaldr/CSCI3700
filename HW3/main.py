@@ -29,7 +29,7 @@ def updateA():
         log = "Error"
     finally:
         cursor.close()
-    return render_template('welcome.html',log=log)
+    return render_template('welcome.html', log=log)
 @app.route('/api/unique')
 
 def index():

@@ -6,11 +6,11 @@ from psycopg2.errors import IntegrityError
 app = Flask(__name__)
 
 # update to match your values
-username='fernaldr16'
-password='test'
+username='zorap'
+password='jan2001'
 host='127.0.0.1'
 port='5432'
-database='testdb1'
+database='hw3'
 
 @app.route('/')
 
